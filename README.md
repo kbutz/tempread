@@ -20,14 +20,17 @@ Run gunicorn:<br/>
 gunicorn --bind 0.0.0.0:8000 wsgi
 
 Configure nginx to proxy requests in a new sites-available<br/>
-<pre>server {
-  listen 80;
-  server_name 0.0.0.0:8000; #I think this can be anything
+<pre>
+server {
+    listen 5000; # exposed port
+    server_name localhost;
 
-  location / {
-    proxy_pass http://0.0.0.0:8000;
-  }
-}</pre>
+    location / {
+        include proxy_params;
+        proxy_pass http://0.0.0.0:8000; # gunicorn port
+    }
+}
+</pre>
 
 Create link to sites-enabled<br/>
 sudo ln -s /etc/nginx/sites-available/tempread /etc/nginx/sites-enabled
