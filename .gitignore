@@ -38,8 +38,8 @@ Temporary Items
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
-*.py[cod]
-*$py.class
+#*.py[cod]
+#*$py.class
 
 # C extensions
 *.so
