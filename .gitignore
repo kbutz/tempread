@@ -38,7 +38,6 @@ Temporary Items
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
-__pycache__/
 *.py[cod]
 *$py.class
 
@@ -152,5 +151,4 @@ venv.bak/
 # End of https://www.gitignore.io/api/python,macos
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
-tempreadenv
 
