@@ -28,6 +28,7 @@ except Exception:
 def read_temp_raw():
     f = open(device_file, 'r')
     lines = f.readlines()
+    print(lines)
     f.close()
     return lines
  
