@@ -4,19 +4,22 @@ Basic functionality for rest api serving up the current temperature using a Rasp
 Hardware setup:(Coming soon)
 
 Running the tempread Flask app with Gunicorn application server and nginx:<br/>
-install python, nginx<br/>
-pip install virtualenv<br/>
-in virtualenv, pip install gunicorn, flask
+install/update python3, nginx<br/>
 
-Create virtualenv<br/>
-mkdir projectname #where virtualenv will be created<br/>
-virtualenv projectname<br/>
-#activate virtualenv for development<br/>
-source projectname/bin/activate<br/>
-#to deactivate virtualenv<br/>
-deactivate<br/>
+pip3 install pipenv
 
-Run gunicorn:<br/>
+To run in pipenv:
+
+* ```pipenv shell```
+* ```pipenv install --ignore-pipfile```
+* ```gunicorn --bind 0.0.0.0:8000 wsgi```
+
+To exist app and pipenv:
+
+* ```ctrl + c to quit gunicorn```
+* ```exit``` to leave pipenv
+
+To run outside of the pipenv, you'll need to pip install flask and gunicorn:<br/>
 gunicorn --bind 0.0.0.0:8000 wsgi
 
 Configure nginx to proxy requests in a new sites-available<br/>
