@@ -1,31 +1,11 @@
-import glob
-import os
 import time
 
 from flask import current_app
 
-# TODO: Move to config
-try:
-    # load the kernel modules needed to handle the sensor
-    os.system('modprobe w1-gpio')
-    os.system('modprobe w1-therm')
-
-    # From an Adafruit tutorial:
-    # https://learn.adafruit.com/adafruits-raspberry-pi-lesson-11-ds18b20-temperature-sensing/software
-    # base path of a sensor directory that starts with 28, the preface for the ds18b20 serial name
-    base_dir = '/sys/bus/w1/devices/'
-    # glob does unix style pathname pattern matching. If multiple ds18 sensors exist, an array of folders would be found
-    device_folder = glob.glob(base_dir + '28*')[0]
-    # The file under the 28-[serial_number] folder where we can find the temperature readings in C*1000
-    device_file = device_folder + '/w1_slave'
-except Exception as e:
-    # TODO: Replace with current_app.logger when this setup has been moved to config
-    print("Could not load temp sensor", e)
-
 
 # open the file representing the sensor
 def read_temp_raw():
-    f = open(device_file, 'r')
+    f = open(current_app.config["TEMP_SENSOR_FILE_LOCATION"], 'r')
     lines = f.readlines()
     f.close()
     return lines
