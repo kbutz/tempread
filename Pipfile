@@ -9,6 +9,7 @@ name = "pypi"
 flask = "*"
 gunicorn = "*"
 flask-sqlalchemy = "*"
+pymysql = "*"
 
 [requires]
 python_version = "3.6"
