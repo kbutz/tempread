@@ -2,11 +2,14 @@ import os
 import glob
 import time
 
+from app.models import TestModel
 from . import api
 
 
 @api.route('/temp')
 def temperature():
+    # test_row = TestModel()
+    # test_row.some_value = "test"
     return "{\"rawTemp\":\"" + read_temp() + "\"}"
 
 
