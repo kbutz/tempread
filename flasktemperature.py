@@ -3,6 +3,8 @@ import glob
 import time
 
 from flask import Flask
+
+# TODO: Refactor app, config and init to an app factory pattern
 app = Flask(__name__)
 
 
@@ -28,6 +30,7 @@ try:
     # The file under the 28-[serial_number] folder where we can find the temperature readings in C*1000
     device_file = device_folder + '/w1_slave'
 except Exception as e:
+    # TODO: Replace print with current_app.logger.exception() after refactoring to app factory
     print("Could not load temp sensor", e)
 
 
@@ -35,7 +38,6 @@ except Exception as e:
 def read_temp_raw():
     f = open(device_file, 'r')
     lines = f.readlines()
-    print(lines)
     f.close()
     return lines
 
@@ -55,5 +57,6 @@ def read_temp():
             temp_f = temp_c * 9.0 / 5.0 + 32.0
             return str(temp_f)
     except Exception as e:
+        # TODO: Replace with current_app.logger.exception() after refactoring to app factory
         print("Error getting temp", e)
         return str(0.0)
