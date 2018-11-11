@@ -2,16 +2,17 @@ import os
 import glob
 import time
 
-from app.models import TemperatureReading
+# from app.models import TemperatureReading
 from . import api
 
 
 @api.route('/temp')
 def temperature():
-    current_temp = read_temp()
-    temp_row = TemperatureReading()
-    temp_row.temp_in_f = float(current_temp)
-    temp_row.add()
+    # TODO: We don't really want to save the temp everytime it is read - this will be done by a cron/celery job
+    # current_temp = read_temp()
+    # temp_row = TemperatureReading()
+    # temp_row.temp_in_f = float(current_temp)
+    # temp_row.add()
     return "{\"rawTemp\":\"" + read_temp() + "\"}"
 
 
@@ -58,5 +59,6 @@ def read_temp():
             return str(temp_f)
     except Exception as e:
         # TODO: Replace with current_app.logger.exception() after refactoring to app factory
+        # TODO: The exceptions occur outside of the current application context - refactor this outside of the blueprint
         print("Error getting temp", e)
         return str(0.0)
