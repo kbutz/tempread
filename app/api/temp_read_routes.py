@@ -2,7 +2,7 @@ import os
 import glob
 import time
 
-from app.models import TestModel, TemperatureReading
+from app.models import TemperatureReading
 from . import api
 
 
