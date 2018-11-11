@@ -25,6 +25,7 @@ try:
     device_file = device_folder + '/w1_slave'
 except Exception as e:
     # TODO: Replace print with current_app.logger.exception() after refactoring to app factory
+    # TODO: The exceptions occur outside of the current application context - refactor this outside of the api blueprint
     print("Could not load temp sensor", e)
 
 
