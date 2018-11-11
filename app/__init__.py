@@ -4,25 +4,17 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 # from config import config
+from config import Config
 
 db = SQLAlchemy()
 
 
-def create_app():
+def create_app(config_class=Config):
     app = Flask(__name__)
 
     app.logger.setLevel(logging.INFO)
 
-    # TODO: add database config
-    db_uri = "mysql+pymysql" + "://" + "root" + ":" + "password" + "@" + "192.168.1.3" + ":" + "3307" + "/" + "tempread"
-
-    app.logger.info("DB URI: " + db_uri)
-
-    # Sets default database uri
-    app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
-
-    app.config['SQLALCHEMY_ECHO'] = True  # Logs useful debugging data, defaults to False
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Notifies the app of db changes, recommended to leave False
+    app.config.from_object(config_class)
 
     db.init_app(app)
 
