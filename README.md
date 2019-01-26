@@ -1,7 +1,12 @@
 # tempread
 Basic functionality for rest api serving up the current temperature using a RaspberryPi 3, DS18B20 temp sensor, Flask, gunicorn and nginx.
 
-#### Hardware setup:(Coming soon)
+#### Hardware setup:
+* Raspberry-pi
+* DS18B20 one-wire temp sensor
+* Breadboard and jumper wires
+
+A good place to get started is Adafruit's walkthrough: https://learn.adafruit.com/adafruits-raspberry-pi-lesson-11-ds18b20-temperature-sensing/hardware
 
 
 #### Running the tempread app locally with Gunicorn application server and nginx and/or Pipenv:
