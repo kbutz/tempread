@@ -30,6 +30,15 @@ To run outside of the pipenv, you'll just need to pip install flask and gunicorn
 ```gunicorn --bind 0.0.0.0:8000 wsgi```
 
 
+####Running Celery with RabbitMQ
+To run a basic RabbitMQ instance from docker w/ management plugin:
+* ```docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management```
+* You can manage your RabbitMQ instance at `http://localhost:15672`
+
+For Celery config:
+* In config.py, set your celery broke url (our rabbit mq instance) and optionally a celery backend for handling or persisting celery responses
+* Run your celery work: `celery worker -A celery_worker.celery --loglevel=info`
+
 #### Optional nginx configuration
 Configure nginx to proxy requests in a new sites-available<br/>
 <pre>
