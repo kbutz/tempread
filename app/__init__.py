@@ -1,5 +1,6 @@
 import logging
 
+from celery import Celery
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
@@ -8,9 +9,12 @@ from config import Config
 
 db = SQLAlchemy()
 
+celery = Celery(__name__, broker=Config.CELERY_BROKER_URL)
+
 
 def create_app(config_class=Config):
     app = Flask(__name__)
+    celery.conf.update(app.config)
 
     app.logger.setLevel(logging.INFO)
 
