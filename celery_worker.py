@@ -5,6 +5,7 @@ from ds18b20 import read_temp_in_f
 app = create_app()
 app.app_context().push()
 
+# Define celery beat schedule to run save_temperature task once every minute
 celery.conf.beat_schedule = {
     'add-every-60-seconds': {
         'task': 'celery_worker.save_temperature',
@@ -13,6 +14,7 @@ celery.conf.beat_schedule = {
 }
 
 
+# Define celery task to read temperature and save to DB
 @celery.task
 def save_temperature():
     current_temp = read_temp_in_f()
