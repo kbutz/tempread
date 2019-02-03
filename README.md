@@ -8,6 +8,9 @@ Celery's heartbeat functionality, serving up the current temperature using a Ras
 * DS18B20 one-wire temp sensor
 * Breadboard and jumper wires
 
+V1 still in the breadboard:
+![V1 Raspberry Pi # + DS18B20](https://i.imgur.com/dPu16Uy.jpg)
+
 A good place to get started is Adafruit's walkthrough: https://learn.adafruit.com/adafruits-raspberry-pi-lesson-11-ds18b20-temperature-sensing/hardware
 
 
