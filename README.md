@@ -1,7 +1,5 @@
 # tempread
-Basic functionality for a rest api  and periodic task to record the temperature governed by
-Celery's heartbeat functionality, serving up the current temperature using a RaspberryPi 3,
- DS18B20 temp sensor, Flask, gunicorn and optionally nginx.
+REST api  and periodic task to record the temperature using Celery's heartbeat, serving up the current temperature using a RaspberryPi 3, DS18B20 temp sensor, Flask, gunicorn and optionally nginx.
 
 #### Hardware setup:
 * Raspberry-pi
