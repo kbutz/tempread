@@ -1,7 +1,12 @@
 # tempread
 Basic functionality for rest api serving up the current temperature using a RaspberryPi 3, DS18B20 temp sensor, Flask, gunicorn and nginx.
 
-#### Hardware setup:(Coming soon)
+#### Hardware setup:
+* Raspberry-pi
+* DS18B20 one-wire temp sensor
+* Breadboard and jumper wires
+
+A good place to get started is Adafruit's walkthrough: https://learn.adafruit.com/adafruits-raspberry-pi-lesson-11-ds18b20-temperature-sensing/hardware
 
 
 #### Running the tempread app locally with Gunicorn application server and nginx and/or Pipenv:
@@ -21,9 +26,23 @@ To exit app and pipenv:
 * ```ctrl + c to quit gunicorn```
 * ```exit``` to leave pipenv
 
+One liner to run a mysql server with docker for local testing:
+* ```docker run --name mysql_container_name -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=example_db -p 3306:3306 -d mysql:5.7```
+
 To run outside of the pipenv, you'll just need to pip install flask and gunicorn, clone this repo, and:
 ```gunicorn --bind 0.0.0.0:8000 wsgi```
 
+
+#### Running Celery with RabbitMQ
+To run a basic RabbitMQ instance from docker w/ management plugin:
+* ```docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management```
+* You can manage your RabbitMQ instance at `http://localhost:15672`
+
+For Celery config:
+* In config.py, set your celery broke url (our rabbit mq instance) and optionally a celery backend for handling or persisting celery responses
+* Run your celery worker to pick up async tasks from Flask: `celery worker -A celery_worker.celery --loglevel=info`
+* Run a celery worker and celery beat to pick up async tasks from Flask and the celery beat to periodically save temperature readings 
+```celery -A celery_worker.celery worker -B --loglevel=info```
 
 #### Optional nginx configuration
 Configure nginx to proxy requests in a new sites-available<br/>

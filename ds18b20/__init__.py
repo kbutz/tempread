@@ -48,7 +48,7 @@ def read_temp_in_f():
             temp_string = lines[1][equals_pos+2:]
             temp_c = float(temp_string) / 1000.0
             temp_f = temp_c * 9.0 / 5.0 + 32.0
-            return str(temp_f)
+            return temp_f
     except Exception as e:
         current_app.logger.error("Error getting temp", e)
-        return str(0.0)
+        return 0.0
