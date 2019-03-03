@@ -7,6 +7,7 @@ from app import db
 
 class TemperatureReading(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    location = db.Column(db.String)
     created_at = db.Column(db.TIMESTAMP, default=datetime.utcnow)
     temp_in_f = db.Column(db.Float())
 

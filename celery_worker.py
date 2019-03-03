@@ -7,9 +7,9 @@ app.app_context().push()
 
 # Define celery beat schedule to run save_temperature task once every minute
 celery.conf.beat_schedule = {
-    'add-every-60-seconds': {
+    'add-every-300-seconds': {
         'task': 'celery_worker.save_temperature',
-        'schedule': 60.0
+        'schedule': 300.0
     },
 }
 
