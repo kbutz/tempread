@@ -45,7 +45,8 @@ to spin up a celery work and beat.
 
 To run a basic RabbitMQ instance from docker w/ management plugin:
 * ```docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management```
-* You can manage your RabbitMQ instance at `http://localhost:15672`
+* You can manage your RabbitMQ instance at `http://localhost:15672
+* To rum rabbitmq on your pi, see https://github.com/RonnyRoos/rpi-rabbitmq
 
 For Celery config:
 * In config.py, set your celery broke url (our rabbit mq instance) and optionally a celery backend for handling or persisting celery responses
